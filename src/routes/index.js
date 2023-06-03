@@ -1,18 +1,20 @@
 import express from "express";
 import produto from "./produtosRoutes.js";
+import cors from "cors";
 
-const routes = (app) => {
-  app.route("/").get((req, res) => {
-    res.status(200).send({ tiulo: "Lovelier Joais" });
-  });
+const app = express();
 
-  // Configuração do cabeçalho Access-Control-Allow-Origin
-  app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    next();
-  });
+// Configuração do CORS usando o middleware cors
+app.use(
+  cors({
+    origin: ["https://lovelier-joias.netlify.app", "http://localhost:3000"],
+  })
+);
 
-  app.use(express.json(), produto);
-};
+app.route("/").get((req, res) => {
+  res.status(200).send({ tiulo: "Lovelier Joais" });
+});
 
-export default routes;
+app.use(express.json(), produto);
+
+export default app;
