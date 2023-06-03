@@ -1,0 +1,11 @@
+name: APILovelier
+env: node
+routes:
+  - path: /
+    script: src/App.js
+    env:
+      NODE_ENV: production
+      PORT: 3000
+    headers:
+      - key: Access-Control-Allow-Origin
+        value: "*"
