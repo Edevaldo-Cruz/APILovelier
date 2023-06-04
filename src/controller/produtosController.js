@@ -22,12 +22,14 @@ class ProdutosController {
   }
 
   static cadastrarProduto(req, res) {
-    let novoProduto = new produto(req.body);
+    const novoProduto = new produto(req.body);
     novoProduto.save((err) => {
       if (err) {
-        res
-          .status(500)
-          .send({ message: `${err.message} - falha ao cadastrar produto.` });
+        console.error(err); // Log do erro para depuração
+        res.status(500).send({
+          message:
+            "Ocorreu um erro ao cadastrar o produto. Por favor, tente novamente mais tarde.",
+        });
       } else {
         res.status(201).send(novoProduto.toJSON());
       }
