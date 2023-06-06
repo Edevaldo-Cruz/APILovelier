@@ -8,7 +8,7 @@ const produtoSchema = new mongoose.Schema({
   categoria: { type: String, required: true },
   imagem: { type: String },
   disponibilidade: { type: Boolean, default: true },
-  destaque: { type: Boolean, default: true },
+  destaque: { type: Boolean, default: false },
 });
 
 const produto = mongoose.model("produto", produtoSchema);
