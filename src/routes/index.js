@@ -1,5 +1,6 @@
 import express from "express";
 import produto from "./produtosRoutes.js";
+import categoria from "./categoriasRoutes.js";
 import cors from "cors";
 
 const routes = (app) => {
@@ -12,7 +13,7 @@ const routes = (app) => {
   app.route("/").get((req, res) => {
     res.status(200).send({ tiulo: "Lovelier Joais" });
   });
-  app.use(express.json(), produto);
+  app.use(express.json(), produto, categoria);
 };
 
 export default routes;
